@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css"/>
+    <link rel="icon" href="favicon/favicon.ico" type="image/x-icon" />
+    <title>Flipify - learn by flashcards</title>
+</head>
+<body>
+    <header>
+        <h1 class="logo"><a href="#">Flipify - learn by flashcards</a></h1>
+        <p class="description">  
+            Flipify helps you learn faster and remember better by using interactive flashcards.<br>Easily create, review, and test your knowledge anytime, anywhere.<br>Perfect for mastering languages, programming, or any subject.
+        </p>
+        <p class="description" style="margin-top: 2rem; margin-bottom: -2rem;">For now, you have <strong class="words">0</strong> flashcards.</p>
+    </header>
+
+    <section>
+        <div class="notification hidden">
+            <button class="close-notification" style="position: absolute; right: 5%;border: none; background-color: none; border-radius: 6px;">×</button>
+            <h2 class="notification-heading">Something's up! ⚠️</h2>
+            <p class="notification-description" style="margin: 0; margin-bottom: 1rem;"></p>
+        </div>
+    </section>
+    
+    <section>
+        <div class="flashcard" id="flashcard">
+        <div class="card-inner">
+            <div class="front">
+            <h2 class="word-flashcard">no word</h2>
+            </div>
+            <div class="back">
+            <p class="definition-flashcard">
+                lorem, ipsum dolor sit amet consectetur adipisicing elit. libero nostrum eligendi fugiat blanditiis distinctio.
+            </p>
+            </div>
+        </div>
+        </div>
+
+        <div>
+            <p class="flashcards-amount" style="text-align: center; font-size: 1.3rem; color: white; margin-top: -1rem;">0/0</p>
+        </div>
+
+        <div class="actions">
+            <button class="previous-flashcard">←</button>
+            <button class="add-flashcard">Add flashcard</button>
+            <button class="remove-flashcard">Remove flashcard</button>
+            <button class="next-flashcard">→</button>
+        </div>
+    </section>
+
+    <section>
+        <form class="add-form hidden">
+            <button class="close-form">×</button>
+            <h1 class="add-form-heading">Add flashcard</h1>
+            <label for="word">Word:</label>
+            <input type="text" id="word" name="word" required>
+
+            <label for="definition">Definition:</label>
+            <input type="text" id="definition" name="definition" required>
+
+            <button class="add-form-btn" type="button">Add flashcard</button>
+        </form>
+    </section>
+
+        <section>
+        <form class="remove-form hidden">
+            <button class="close-form">×</button>
+            <h1 class="remove-form-heading">Are you sure?</h1>
+            <label for="word">Are you sure you want to remove this flashcard? This action won't be cancelled.</label>
+            <div class="btns-deletion">
+                <button class="confirm-deletion-btn" type="submit">Yes, delete flashcard</button>
+                <button class="discard-deletion-btn" type="submit">No, remain flashcard</button>
+            </div>
+        </form>
+    </section>
+
+    <div>
+        <div class="overlay hidden"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
