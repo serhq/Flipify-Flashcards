@@ -1,3 +1,6 @@
+@import url(./--variables.css);
+@import url(./--fonts.css);
+
 body {
     margin: 0;
     padding: 0;
@@ -19,9 +22,9 @@ body {
     margin: 0 auto;
 }
 
-.logo a {
+.logo {
     text-decoration: none;
-    color: rgb(94, 241, 50);
+    color: var(--text-header-color);
 }
 
 /* Add/remove the flashcard form */

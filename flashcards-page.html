@@ -3,17 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="styles/style.css"/>
     <link rel="icon" href="favicon/favicon.ico" type="image/x-icon" />
     <title>Flipify - learn by flashcards</title>
 </head>
 <body>
     <header>
-        <h1 class="logo"><a href="#">Flipify - learn by flashcards</a></h1>
-        <p class="description">  
-            Flipify helps you learn faster and remember better by using interactive flashcards.<br>Easily create, review, and test your knowledge anytime, anywhere.<br>Perfect for mastering languages, programming, or any subject.
-        </p>
-        <p class="description" style="margin-top: 2rem; margin-bottom: -2rem;">For now, you have <strong class="words">0</strong> flashcards.</p>
+        <h1 class="logo">Flipify</h1>
     </header>
 
     <section>
@@ -68,10 +64,10 @@
         <form class="remove-form hidden">
             <button class="close-form">×</button>
             <h1 class="remove-form-heading">Are you sure?</h1>
-            <label for="word">Are you sure you want to remove this flashcard? This action won't be cancelled.</label>
+            <p>Are you sure you want to remove this flashcard? This action won't be cancelled.</p>
             <div class="btns-deletion">
-                <button class="confirm-deletion-btn" type="submit">Yes, delete flashcard</button>
-                <button class="discard-deletion-btn" type="submit">No, remain flashcard</button>
+                <button class="confirm-deletion-btn" type="button">Yes, delete flashcard</button>
+                <button class="discard-deletion-btn" type="button">No, remain flashcard</button>
             </div>
         </form>
     </section>
@@ -80,6 +76,6 @@
         <div class="overlay hidden"></div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="scripts/script.js"></script>
 </body>
 </html>

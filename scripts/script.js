@@ -55,14 +55,12 @@ const updateFlashcard = () => {
         wordFlashcard.textContent = '';
         definitionFlashcard.textContent = '';
         document.querySelector('.flashcards-amount').textContent = `0/0`;
-        document.querySelector('.words').textContent = `0`;
         return;
     }
     wordFlashcard.textContent = flashcards[currentIndex].word;
     definitionFlashcard.textContent = flashcards[currentIndex].definition;
 
     document.querySelector('.flashcards-amount').textContent = `${currentIndex+1}/${flashcards.length}`;
-    document.querySelector('.words').textContent = flashcards.length;
 };
 
 // previous flashcard button <=
@@ -104,32 +102,39 @@ addFlashcard.addEventListener('click', () => {
     });
     
 addFlashcardBtn.addEventListener('click', (e) => {
-        e.preventDefault();
+e.preventDefault();
 
-        const wordInput = document.getElementById('word').value.trim();
-        const definitionInput = document.getElementById('definition').value.trim();
+const wordInput = document.getElementById('word').value.trim();
+const definitionInput = document.getElementById('definition').value.trim();
 
-        if (wordInput !== '' && definitionInput !== '') {
-            flashcards.push({
-                word: wordInput,
-                definition: definitionInput
-            });
-        
-            currentIndex = flashcards.length - 1;
-            updateFlashcard();
-            
-            addForm.classList.add('hidden');
-            overlay.classList.add('hidden');
-            
-            document.getElementById('word').value = '';
-            document.getElementById('definition').value = '';
+if (wordInput !== '' && definitionInput !== '') {
+    const isDuplicate = flashcards.some(card => card.word.toLowerCase() == wordInput.toLowerCase());
 
-            showNotification('Successful! ✅', 'The flashcard was added.');
+    if (isDuplicate) {
+        showNotification(`Duplicate word ⚠️`, `A flashcard with the word "${wordInput}" already exists.`);
+        return;
+    }
+
+    flashcards.push({word: wordInput, definition: definitionInput });
+    
+    currentIndex = flashcards.length - 1;
+    updateFlashcard();
+    
+    addForm.classList.add('hidden');
+    overlay.classList.add('hidden');
+    
+    document.getElementById('word').value = '';
+    document.getElementById('definition').value = '';
+
+    showNotification('Successful! ✅', 'The flashcard was added.');
             
-    } else {
-            showNotification(`Something's up! ⚠️`, `You can't add the empty flashcard. Make sure it has word and description!`);
-        }
-    });
+} else if (flashcards[currentIndex].word.contains(wordFlashcard)) {
+
+} else {
+    showNotification(`Something's up! ⚠️`, `You can't add the empty flashcard. Make sure it has word and description!`);
+}
+
+});
     
     // close form
 document.addEventListener('keydown', (e) => {
@@ -146,6 +151,7 @@ closeForm.addEventListener('click', () => {
     
 overlay.addEventListener('click', () => {
         addForm.classList.add('hidden');
+        removeForm.classList.add('hidden');
         overlay.classList.add('hidden');
     })
     

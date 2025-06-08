@@ -1,0 +1,19 @@
+:root {
+  /* background */
+  --bg-color-light: #fafafa;
+
+  /* shadow */
+  --box-shadow-subtle: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  /* text */
+  --text-header-color: #e77e23;
+  --text-paragraph-color: #292929;
+  --text-button-color: #f0a400;
+
+  /* buttons */
+  --button-accept-color: rgb(113, 201, 113);
+  --button-decline-color: rgb(194, 86, 86);
+
+  /* icons (svg) */
+  --icon-color: #f5b042;
+}
