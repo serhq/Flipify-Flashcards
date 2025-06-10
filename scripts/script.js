@@ -110,6 +110,37 @@ nextFlashcard.addEventListener('click', () => {
     updateFlashcard();
 });
 
+
+// show flashcards if they're added
+const renderAllFlashcards = () => {
+
+    const noFlashcards = document.querySelector('.no-flashcards-msg');
+    const listContainer = document.querySelector('.all-flashcards-list');
+    listContainer.innerHTML = '';
+
+    if (flashcards.length === 0) {
+        noFlashcards.classList.remove('hidden');
+        return;
+    } else {
+        noFlashcards.classList.add('hidden');
+    }
+    for (let i = 0; i < flashcards.length; i++) {
+        const card = document.createElement('div');
+        card.classList.add('card-preview');
+        
+        const wordElement = document.createElement('h3');
+        wordElement.textContent = flashcards[i].word;
+
+        const definitionElement = document.createElement('p');
+        definitionElement.textContent = flashcards[i].definition;
+
+        card.appendChild(wordElement);
+        card.appendChild(definitionElement);
+
+        listContainer.appendChild(card);
+    }
+}
+
 // add new flashcard
 addFlashcard.addEventListener('click', () => {
     overlay.classList.remove('hidden');
@@ -143,6 +174,7 @@ addFlashcardBtn.addEventListener('click', (e) => {
         document.getElementById('definition').value = '';
 
         showNotification('Successful! ✅', 'The flashcard was added.');
+        renderAllFlashcards();
 
     } else if (wordInput !== '' && definitionInput == '') {
         showNotification(`Definition is empty! ⚠️`, `You can't create an empty flashcard. Make sure the definition is entered.`);
@@ -200,6 +232,7 @@ acceptDeletion.addEventListener('click', (e) => {
     showNotification('Successful! ✅', 'The flashcard was removed.');
 
     updateFlashcard();
+    renderAllFlashcards();
 });
 
 discardDeletion.addEventListener('click', (e) => {
@@ -212,3 +245,4 @@ discardDeletion.addEventListener('click', (e) => {
 // Load flashcards on initialization
 loadFlashcards();
 updateFlashcard();
+renderAllFlashcards();
