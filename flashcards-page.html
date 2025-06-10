@@ -10,11 +10,12 @@
 <body>
     <header>
         <h1 class="logo">Flipify</h1>
+        <p class="description">A simple flashcard web app for creating, viewing, and managing vocabulary cards with interactive notifications and a clean user interface.</p>
     </header>
 
     <section>
         <div class="notification hidden">
-            <button class="close-notification" style="position: absolute; right: 5%;border: none; background-color: none; border-radius: 6px;">×</button>
+            <button class="close-notification">×</button></button>
             <h2 class="notification-heading">Something's up! ⚠️</h2>
             <p class="notification-description" style="margin: 0; margin-bottom: 1rem;"></p>
         </div>
@@ -35,7 +36,7 @@
         </div>
 
         <div>
-            <p class="flashcards-amount" style="text-align: center; font-size: 1.3rem; color: white; margin-top: -1rem;">0/0</p>
+            <p class="flashcards-amount" style="text-align: center; font-size: 1.3rem; color: rgb(235, 229, 229); margin-top: -1rem;">0/0</p>
         </div>
 
         <div class="actions">
@@ -51,10 +52,10 @@
             <button class="close-form">×</button>
             <h1 class="add-form-heading">Add flashcard</h1>
             <label for="word">Word:</label>
-            <input type="text" id="word" name="word" required>
+            <input type="text" id="word" name="word" placeholder="type your word" aria-autocomplete="none" required>
 
             <label for="definition">Definition:</label>
-            <input type="text" id="definition" name="definition" required>
+            <input type="text" id="definition" name="definition" placeholder="type the definition" aria-autocomplete="none" required>
 
             <button class="add-form-btn" type="button">Add flashcard</button>
         </form>
@@ -64,10 +65,12 @@
         <form class="remove-form hidden">
             <button class="close-form">×</button>
             <h1 class="remove-form-heading">Are you sure?</h1>
-            <p>Are you sure you want to remove this flashcard? This action won't be cancelled.</p>
+            <div class="removing-flashcard">
+            <p>Are you sure you want to remove this flashcard? <br>This action won't be cancelled.</p>
             <div class="btns-deletion">
                 <button class="confirm-deletion-btn" type="button">Yes, delete flashcard</button>
                 <button class="discard-deletion-btn" type="button">No, remain flashcard</button>
+                </div>
             </div>
         </form>
     </section>

@@ -47,8 +47,22 @@ flashcard.addEventListener('click', () => {
 });
 
 // empty list of flashcards
-let flashcards = [
-];
+let flashcards = [];
+
+// Function to load flashcards from localStorage
+const loadFlashcards = () => {
+    const storedFlashcards = localStorage.getItem('flashcards');
+    if (storedFlashcards) {
+        flashcards = JSON.parse(storedFlashcards);
+        currentIndex = 0;
+        updateFlashcard();
+    }
+};
+
+// Function to save flashcards to localStorage
+const saveFlashcards = () => {
+    localStorage.setItem('flashcards', JSON.stringify(flashcards));
+};
 
 const updateFlashcard = () => {
     if (flashcards.length === 0 || currentIndex < 0 || currentIndex >= flashcards.length) {
@@ -66,126 +80,135 @@ const updateFlashcard = () => {
 // previous flashcard button <=
 previousFlashcard.addEventListener('click', () => {
     currentIndex--;
-    if (currentIndex <= 0) {
-        currentIndex = 0;
+    if (currentIndex < 0) {
+        currentIndex = flashcards.length - 1; // Go to the last card if at the beginning
         if (flashcards.length === 0) {
             showNotification(`Something's up! ⚠️`, `There's no any flashcards to switch between.`);
-            }
+            currentIndex = 0;
+        }
     }
     
     flashcard.classList.remove('flipped');
     
-    document.querySelector('.flashcards-amount').textContent = `${currentIndex}/${flashcards.length}`;
+    document.querySelector('.flashcards-amount').textContent = `${currentIndex+1}/${flashcards.length}`;
     updateFlashcard();
 });
 
 // next flashcard button =>
-    nextFlashcard.addEventListener('click', () => {
-        currentIndex++;
-        if (currentIndex >= flashcards.length) {
-            currentIndex = 0;
-            if (flashcards.length === 0) {
-                showNotification(`Something's up! ⚠️`, `There's no any flashcards to switch between.`);
-            }
+nextFlashcard.addEventListener('click', () => {
+    currentIndex++;
+    if (currentIndex >= flashcards.length) {
+        currentIndex = 0; // Go back to the first card if at the end
+        if (flashcards.length === 0) {
+            showNotification(`Something's up! ⚠️`, `There's no any flashcards to switch between.`);
         }
-
-        flashcard.classList.remove('flipped');
-
-        document.querySelector('.flashcards-amount').textContent = `${currentIndex}/${flashcards.length}`;
-        updateFlashcard();
-    });
-    
-// add new flashcard
-addFlashcard.addEventListener('click', () => {
-        overlay.classList.remove('hidden');
-        addForm.classList.remove('hidden');
-    });
-    
-addFlashcardBtn.addEventListener('click', (e) => {
-e.preventDefault();
-
-const wordInput = document.getElementById('word').value.trim();
-const definitionInput = document.getElementById('definition').value.trim();
-
-if (wordInput !== '' && definitionInput !== '') {
-    const isDuplicate = flashcards.some(card => card.word.toLowerCase() == wordInput.toLowerCase());
-
-    if (isDuplicate) {
-        showNotification(`Duplicate word ⚠️`, `A flashcard with the word "${wordInput}" already exists.`);
-        return;
     }
 
-    flashcards.push({word: wordInput, definition: definitionInput });
-    
-    currentIndex = flashcards.length - 1;
+    flashcard.classList.remove('flipped');
+
+    document.querySelector('.flashcards-amount').textContent = `${currentIndex+1}/${flashcards.length}`;
     updateFlashcard();
-    
-    addForm.classList.add('hidden');
-    overlay.classList.add('hidden');
-    
-    document.getElementById('word').value = '';
-    document.getElementById('definition').value = '';
+});
 
-    showNotification('Successful! ✅', 'The flashcard was added.');
-            
-} else if (flashcards[currentIndex].word.contains(wordFlashcard)) {
+// add new flashcard
+addFlashcard.addEventListener('click', () => {
+    overlay.classList.remove('hidden');
+    addForm.classList.remove('hidden');
+});
 
-} else {
-    showNotification(`Something's up! ⚠️`, `You can't add the empty flashcard. Make sure it has word and description!`);
-}
+addFlashcardBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    const wordInput = document.getElementById('word').value.trim();
+    const definitionInput = document.getElementById('definition').value.trim();
+
+    if (wordInput !== '' && definitionInput !== '') {
+        const isDuplicate = flashcards.some(card => card.word.toLowerCase() == wordInput.toLowerCase());
+
+        if (isDuplicate) {
+            showNotification(`Duplicate word ⚠️`, `A flashcard with the word "${wordInput}" already exists.`);
+            return;
+        }
+
+        flashcards.push({word: wordInput, definition: definitionInput });
+        saveFlashcards(); // Save to localStorage
+
+        currentIndex = flashcards.length - 1;
+        updateFlashcard();
+
+        addForm.classList.add('hidden');
+        overlay.classList.add('hidden');
+
+        document.getElementById('word').value = '';
+        document.getElementById('definition').value = '';
+
+        showNotification('Successful! ✅', 'The flashcard was added.');
+
+    } else if (wordInput !== '' && definitionInput == '') {
+        showNotification(`Definition is empty! ⚠️`, `You can't create an empty flashcard. Make sure the definition is entered.`);
+        return;
+    } else if (wordInput == '' && definitionInput !== '') {
+        showNotification(`Word is empty! ⚠️`, `You can't create an empty flashcard. Make sure the word is entered.`);
+        return;
+    } else {
+        showNotification(`Something's up! ⚠️`, `You can't add the empty flashcard. Make sure it has word and description!`);
+    }
 
 });
-    
-    // close form
+
+// close form
 document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && !addForm.classList.contains('hidden')) {
-            addForm.classList.add('hidden');
-            overlay.classList.add('hidden');
-        }
-    });
-    
+    if (e.key === 'Escape' && !addForm.classList.contains('hidden')) {
+        addForm.classList.add('hidden');
+        overlay.classList.add('hidden');
+    }
+});
+
 closeForm.addEventListener('click', () => {
-        addForm.classList.add('hidden');
-        overlay.classList.add('hidden');
-    })
-    
+    addForm.classList.add('hidden');
+    overlay.classList.add('hidden');
+})
+
 overlay.addEventListener('click', () => {
-        addForm.classList.add('hidden');
-        removeForm.classList.add('hidden');
-        overlay.classList.add('hidden');
-    })
-    
+    addForm.classList.add('hidden');
+    removeForm.classList.add('hidden');
+    overlay.classList.add('hidden');
+})
+
 // remove the current flashcard form visible
 removeFlashcard.addEventListener('click', () => {
-        if (flashcards.length > 0) {
-            removeForm.classList.remove('hidden');
-            overlay.classList.remove('hidden');
-        } else {
-            showNotification(`Something's up! ⚠️`, `There's no any flashcards to remove.`);
-        }
-    });
-    
+    if (flashcards.length > 0) {
+        removeForm.classList.remove('hidden');
+        overlay.classList.remove('hidden');
+    } else {
+        showNotification(`Something's up! ⚠️`, `There's no any flashcards to remove.`);
+    }
+});
+
 acceptDeletion.addEventListener('click', (e) => {
-        e.preventDefault();
-        flashcards.splice(currentIndex, 1);
-        
-        if (currentIndex >= flashcards.length) {
-            currentIndex = flashcards.length - 1;
-        }
-        
-        removeForm.classList.add('hidden');
-        overlay.classList.add('hidden');
-        
-        showNotification('Successful! ✅', 'The flashcard was removed.');
-        
-        updateFlashcard();
-    });
-    
+    e.preventDefault();
+    flashcards.splice(currentIndex, 1);
+    saveFlashcards(); // Save to localStorage
+
+    if (currentIndex >= flashcards.length) {
+        currentIndex = flashcards.length - 1;
+    }
+
+    removeForm.classList.add('hidden');
+    overlay.classList.add('hidden');
+
+    showNotification('Successful! ✅', 'The flashcard was removed.');
+
+    updateFlashcard();
+});
+
 discardDeletion.addEventListener('click', (e) => {
-        e.preventDefault(); // do not reload the page after submittion the form (clicking the button)
-        removeForm.classList.add('hidden');
-        overlay.classList.add('hidden');
-        
-    });
-    
+    e.preventDefault(); // do not reload the page after submittion the form (clicking the button)
+    removeForm.classList.add('hidden');
+    overlay.classList.add('hidden');
+
+});
+
+// Load flashcards on initialization
+loadFlashcards();
 updateFlashcard();
