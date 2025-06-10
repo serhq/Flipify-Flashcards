@@ -1,3 +1,6 @@
+@import url(./--fonts.css);
+@import url(./--variables.css);
+
 /* General objects */
 
 body {
@@ -29,7 +32,7 @@ header {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    background-color: white;
+    background-color: var(--color-white);
     margin: 1rem;
     padding: .5rem 1.5rem;
     width: 12%;
@@ -82,7 +85,7 @@ header {
   position: absolute;
   border-radius: 1rem;
   backface-visibility: hidden;
-  background-color: white;
+  background-color: var(--color-white);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
@@ -104,23 +107,39 @@ header {
 }
 
 .previous-flashcard, .next-flashcard {
-    border: none;
-    border-radius: 4px;
-    background-color: white;
+    border: 1px solid rgb(207, 207, 207);
+    border-radius: 20%;
+    background-color: rgb(218, 218, 218);
+    color: var(--color-black);
     padding: 0rem 1rem;
-    font-size: 1.2rem;
+    font-size: 1rem;
     cursor: pointer;
 }
 
 .add-flashcard, .remove-flashcard {
     border: none;
     border-radius: 4px;
-    background-color: white;
+    background-color: var(--color-coral);
+    color: var(--color-white);
     padding: .5rem 1.5rem;
     font-size: 1rem;
     cursor: pointer;
 }
 
+.add-flashcard-extra {
+    border: none;
+    border-radius: 50%;
+    background-color: var(--color-coral);
+    width: 50px;
+    text-align: center;
+    color: var(--color-white);
+    font-size: 1.25rem;
+    font-weight: 600;
+    height: 50px;
+    cursor: pointer;
+    margin: 2rem auto;
+    display: block;
+}
 
 /* Add/remove the flashcard form */
 
@@ -232,7 +251,7 @@ header {
  }
 
  .card-preview {
-    background-color: white;
+    background-color: var(--color-white);
     padding: 1rem 1.5rem;
     border-radius: 2px;
     width: 90%;
@@ -254,6 +273,7 @@ header {
     text-align: center;
     font-size: 1.3rem;
     color: rgb(46, 43, 43);
+    margin: 0;
 
  }
 
@@ -262,16 +282,16 @@ header {
     border: none;
     border-radius: 4px;
     padding: .3rem 1.2rem;
-    background-color: rgb(231, 93, 93);
-    color: white;
+    background-color: var(--color-light-red-discard);
+    color: var(--color-white);
  }
 
  .remove-form .discard-deletion-btn {
     border: none;
     border-radius: 4px;
     padding: .3rem 1.2rem;
-    background-color: rgb(67, 189, 67);
-    color: white;
+    background-color: var(--color-light-green-confirm);
+    color: var(--color-white);
  }
 
 .overlay {

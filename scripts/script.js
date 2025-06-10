@@ -14,6 +14,7 @@ const overlay = document.querySelector('.overlay');
 // actions with flashcard (buttons to open forms)
 const flashcard = document.getElementById('flashcard');
 const addFlashcard = document.querySelector('.add-flashcard');
+const addFlashcardExtra = document.querySelector('.add-flashcard-extra')
 const removeFlashcard = document.querySelector('.remove-flashcard');
 
 // switching between flashcards
@@ -146,6 +147,11 @@ addFlashcard.addEventListener('click', () => {
     overlay.classList.remove('hidden');
     addForm.classList.remove('hidden');
 });
+
+addFlashcardExtra.addEventListener('click', () => {
+    overlay.classList.remove('hidden');
+    addForm.classList.remove('hidden');
+})
 
 addFlashcardBtn.addEventListener('click', (e) => {
     e.preventDefault();

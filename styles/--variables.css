@@ -1,0 +1,13 @@
+:root {
+    --color-white: #fff;
+    --color-black: #000;
+    --color-coral: coral;
+    --color-gray-line: rgb(192,192,192);
+    --color-light-black-close: #333;
+    --color-light-green-confirm: rgb(67, 189, 67);
+    --color-light-red-discard: rgb(231, 93, 93);
+
+    /* Themes */
+    --color-light-background: #e7ecee;
+    --color-dark-background: 000;
+}
