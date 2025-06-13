@@ -1,30 +1,5 @@
 let currentIndex = 0;
 
-// word - definition
-const wordFlashcard = document.querySelector('.word-flashcard');
-const definitionFlashcard = document.querySelector('.definition-flashcard');
-const addFlashcardBtn = document.querySelector('.add-form-btn');
-
-// opening/closing forms
-const addForm = document.querySelector('.add-form');
-const removeForm = document.querySelector('.remove-form');
-const closeForm = document.querySelector('.close-form');
-const overlay = document.querySelector('.overlay');
-
-// actions with flashcard (buttons to open forms)
-const flashcard = document.getElementById('flashcard');
-const addFlashcard = document.querySelector('.add-flashcard');
-const addFlashcardExtra = document.querySelector('.add-flashcard-extra')
-const removeFlashcard = document.querySelector('.remove-flashcard');
-
-// switching between flashcards
-const nextFlashcard = document.querySelector('.next-flashcard');
-const previousFlashcard = document.querySelector('.previous-flashcard');
-
-// deleting the current flashcard
-const acceptDeletion = document.querySelector('.confirm-deletion-btn');
-const discardDeletion = document.querySelector('.discard-deletion-btn');
-
 // displaying notification if there's any issue.
 const showNotification = (heading, description) => {
     document.querySelector('.notification').classList.remove('hidden');
