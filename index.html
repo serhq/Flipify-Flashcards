@@ -19,7 +19,7 @@
     </header>
 
         <form class="create-deck-form hidden">
-            <button class="close-form">×</button>
+            <button type="button" class="close-form">×</button>
             <h2>Create deck</h2>
 
             <label for="deck-name">Deck name:</label>
@@ -38,10 +38,6 @@
             <div class="deck">
                 <h1 class="deck-name">English B1</h1>
                 <p class="deck-description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perferendis, ipsum ea, repudiandae quam recusandae illo amet exercitationem harum dolores nam fugiat eius vel. Quisquam nesciunt ipsum laudantium maiores, ut voluptas.</p>
-                <div class="actions">
-                    <button class="learn-deck-btn" type="button">Learn</button>
-                    <button class="remove-deck-btn" type="button">Remove</button>
-                </div>
             </div>
     </div>
 
@@ -65,17 +61,21 @@
         </div>
     </div>
 
-    <p id="current-card"></p>
+    <p class="current-card" style="text-align: center;">0/0</p>
 
     <div class="undercard-control">
         <button class="previous-card">←</button>
-        <button class="learn-cards">Learn</button>
-        <button class="add-card-btn">+</button>
+        <button class="add-card-btn">Add</button>
+        <button class="remove-card-btn">Remove</button>
         <button class="next-card">→</button>
     </div>
 
+    <div class="back-btn">
+        <button id="main-page-return">Return to the main page</button>
+    </div>
+
     <form class="add-card-popup-form hidden">
-        <button class="close-form">×</button>
+        <button type="button" class="close-form">×</button>
         <h1>Add new card</h1>
         <label for="word">Word:</label>
         <input type="text" id="word" name="word" placeholder="type your word" aria-autocomplete="none" required>
@@ -86,10 +86,10 @@
         <button class="add-card-form-btn" type="button">Add</button>
     </form>
 
-    <form class="remove-card-popup-form">
-        <button class="close-form">x</button>
-        <h1>Remove the current card</h1>
-        <p>Are you sure you want to remove the current card?<br>This action can't be interrupted.</p>
+    <form class="remove-card-popup-form hidden">
+        <button type="button" class="close-form">x</button>
+        <h1 style="text-align: center;">Remove the card</h1>
+        <p>Are you sure you want to remove the card?<br>This action can't be interrupted.</p>
         <div class="actions">
             <button type="button" class="confirmDeletion">Yes, delete it!</button>
             <button type="button" class="discardDeletion">No, remain it!</button>

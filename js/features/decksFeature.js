@@ -7,10 +7,12 @@ import {
     createDeckFormBtn,
     createDeckBtn,
     closeForm,
-    overlay, 
+    overlay,
 } from "../dom.js";
 
-let decks = [];
+import { saveDecks, loadDecks } from "../storage.js";
+
+let decks = loadDecks();
 
 const renderAllDecks = () => {
 
@@ -45,6 +47,7 @@ const renderAllDecks = () => {
 // Updating decks
 
 const updateDecks = () => {
+    saveDecks(decks);
     if (decks.length === 0) {
         decksStatus.innerHTML = 'You do not have any decks yet. <br>To create your first deck, please click the "+" button.';
         return;
@@ -68,12 +71,12 @@ createDeckFormBtn.addEventListener('click', (e) =>{
     let deckSubtitle = document.getElementById('deck-description').value.trim();
 
     if (deckTitle !== '') {
-        decks.push(
-            {
+        decks.push({
                 deckName: deckTitle, 
                 deckDescription: deckSubtitle,
                 cards: [] 
-            });
+            }); 
+        saveDecks(decks);
 
         overlay.classList.add('hidden');
         createDeckForm.classList.add('hidden');
@@ -88,16 +91,16 @@ createDeckFormBtn.addEventListener('click', (e) =>{
 });
 
 updateDecks();
+renderAllDecks();
 
 // Closing creating decks form
 
-closeForm.addEventListener('click', (e) => {
+closeForm.forEach(btn => {
+  btn.addEventListener('click', (e) => {
     e.preventDefault();
 
-    overlay.classList.add('hidden');
     createDeckForm.classList.add('hidden');
-
-    
+  });
 });
 
 decksContainer.addEventListener('click', (event) => {
@@ -106,6 +109,8 @@ decksContainer.addEventListener('click', (event) => {
 
     const deckIndex = clickedDeck.getAttribute('data-index');
     if (deckIndex === null) return;
+
+    localStorage.setItem('currentDeckIndex', deckIndex);
 
     deckSection.classList.add('hidden');
     singleDeckSection.classList.remove('hidden');

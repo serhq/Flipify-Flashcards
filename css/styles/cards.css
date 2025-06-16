@@ -1,15 +1,12 @@
 @import url(/css/variables/--variables.css);
 @import url(/css/variables/--fonts.css);
 
-#single-deck-section.hidden {
-    display: none;
-}
-
 .single-deck-name {
     margin: 2rem 2.5rem;
     font-size: 1.5rem;
     color: var(--color-black);
     font-weight: 600;
+    text-align: center;
 }
 
 .card-container {
@@ -73,6 +70,7 @@
 /* Forms */
 .add-card-popup-form, 
 .remove-card-popup-form {
+  position: relative;
   width: 100%;
   height: 100%;
   max-width: 250px;
@@ -84,7 +82,7 @@
   margin: 0 auto;
   padding: 2rem 2rem;
   background-color: var(--color-white);
-  z-index: 5;
+  z-index: 500;
 }
 
 .add-card-popup-form h1,
@@ -114,8 +112,20 @@
 
 .add-card-popup-form .close-form {
     position: absolute;
-    top: 400px;
-    right: 45px;
+    top: 10px;
+    right: 10px;
+    color: var(--color-black);
+    width: 20px;
+    height: 20px;
+    border: 0;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.remove-card-popup-form .close-form {
+    position: absolute;
+    top: 10px;
+    right: 10px;
     color: var(--color-black);
     width: 20px;
     height: 20px;
@@ -172,11 +182,106 @@
   border-radius: 16px;
 }
 
-.learn-cards {
+.remove-card-btn {
   cursor: pointer;
   background-color: var(--color-general);
   border: 0;
   padding: .5rem .7rem;
   color: var(--color-white);
   border-radius: 16px;
+}
+
+.back-btn {
+  display: flex;
+  justify-content: center;
+}
+
+#main-page-return {
+  background-color: transparent;
+  border: 1px solid gray;
+  padding: .3rem .8rem;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+
+.line {
+    margin-top: 2rem;
+    height: 1px;
+    width: 60%;
+    margin: 2rem auto;
+    border-bottom: 1px solid rgb(192, 192, 192);
+ }
+
+ /* Displaying available flashcards */
+
+
+.cards-section-list h2 {
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    font-size: 1.6rem;
+}
+
+ .all-cards-list {
+    max-width: 400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 3rem;
+ }
+
+ .card-preview {
+    background-color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 2px;
+    width: 90%;
+    box-shadow: 0px 0px 8px 3px rgba(134, 134, 134, 0.301);
+ }
+
+ .card-preview h3 {
+    font-size: 1.25rem;
+    margin: 1rem 0 .4rem 0;
+    color: black;
+ }
+
+ .card-preview p {
+    font-size: 1rem;
+    color: black;
+ }
+
+ .no-cards-msg {
+    text-align: center;
+    font-size: 1rem;
+    color: rgb(46, 43, 43);
+ }
+
+.add-card-extra {
+  display: block;
+  margin: auto;
+  height: 50px;
+  width: 50px;
+  background-color: var(--color-general);
+  border: none;
+  border-radius: 50%;
+  color: white;
+  font-size: 1.2rem;
+}
+
+/* Hidden */
+#single-deck-section.hidden {
+    display: none;
+}
+
+.add-card-popup-form.hidden {
+  display: none;
+}
+
+.remove-card-popup-form.hidden {
+  display: none;
+}
+
+.cards-section-list.hidden {
+  display: none;
 }

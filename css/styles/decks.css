@@ -113,15 +113,15 @@ header {
 }
 
 .create-deck-form {
-    position: relative;
+    position: absolute;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    transform: translate(50%,0%);
     border-radius: 8px;
     width: 250px;
     height: 250px;
     background-color: var(--color-white);
-    margin: 0 auto;
     padding: 1rem 2rem;
     z-index: 2;
 }
@@ -154,4 +154,59 @@ header {
 
 #decks-section.hidden {
     display: none;
+}
+
+@media (min-width: 768px) {
+    .decks-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        margin: 2rem auto;
+        gap: 1rem;
+        max-width: 1200px;
+        justify-content: center;
+    }
+
+    .create-deck-form {
+        width: 400px;
+        height: auto;
+        padding: 2rem;
+    }
+
+    .deck {
+        padding: 2rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .decks-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        margin: 2rem auto;
+        gap: 1rem;
+        max-width: 1200px;
+        justify-content: center;
+    }
+
+    header {
+        margin: 3rem;
+    }
+
+    #logo {
+        font-size: 2.5rem;
+    }
+
+    .create-deck-btn {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+
+    .create-deck-form {
+        width: 50%;
+        max-width: 800px;
+    }
+
+    .create-deck-form label {
+        width: 50%;
+    }
 }

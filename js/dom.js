@@ -6,7 +6,7 @@ export const createDeckForm = document.querySelector('.create-deck-form');
 export const createDeckFormBtn = document.querySelector('.create-deck-form-btn');
 
 // General constants
-export const closeForm = document.querySelector('.close-form');
+export const closeForm = document.querySelectorAll('.close-form');
 export const overlay = document.querySelector('.overlay');
 
 // General sections
@@ -19,11 +19,10 @@ export const wordCard = document.querySelector('.card-name');
 export const meaningCard = document.querySelector('.card-meaning');
 export const addCardBtn = document.querySelector('.add-card-btn');
 export const addCardForm = document.querySelector('.add-card-popup-form');
-export const removeForm = document.querySelector('.remove-form');
-export const closeCardsForm = document.querySelector('.close-cards-form');
-export const addFlashcardExtra = document.querySelector('.add-flashcard-extra');
-export const removeFlashcard = document.querySelector('.remove-flashcard');
-export const nextFlashcard = document.querySelector('.next-flashcard');
-export const previousFlashcard = document.querySelector('.previous-flashcard');
-export const acceptDeletion = document.querySelector('.accept-deletion-btn');
-export const discardDeletion = document.querySelector('.discard-deletion-btn');
+export const addCardFormBtn = document.querySelector('.add-card-form-btn');
+export const removeCardBtn = document.querySelector('.remove-card-btn');
+export const removeCardForm = document.querySelector('.remove-card-popup-form');
+export const previousCard = document.querySelector('.previous-card');
+export const nextCard = document.querySelector('.next-card');
+export const confirmDeletionBtn = document.querySelector('.confirmDeletion');
+export const discardDeletionBtn = document.querySelector('.discardDeletion');
